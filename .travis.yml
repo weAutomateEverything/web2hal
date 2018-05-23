@@ -1,8 +1,10 @@
-language: node
-cache: bundler
+language: node_js
+cache:
+  directories:
+    - "node_modules"
 
-node:
-- master
+node_js:
+- "node"
 
 sudo: false
 services:
