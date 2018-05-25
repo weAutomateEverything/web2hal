@@ -35,7 +35,7 @@
       }
     },
     mounted() {
-      this.$http.get('http://localhost:8000/httpEndpoints', '').then(response => {
+      this.$http.get('/api/httpEndpoints', '').then(response => {
         return response.json()
       }).then(json => {
         this.items = json
