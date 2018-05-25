@@ -8,8 +8,8 @@
           <v-spacer></v-spacer>
         </v-toolbar>
         <v-card-text>
-          <v-alert v-if="error != ''" type="error">
-            {{ error }}
+          <v-alert value="error" type="error">
+            {{ this.error }}
           </v-alert>
           <v-form>
             <v-text-field label="name" v-model="name" required
@@ -26,20 +26,32 @@
                 Parameters
               </v-card-title>
               <v-card-text>
-                <v-layout row wrap>
-                  <v-flex sm4>
-                    <v-text-field label="Name"></v-text-field>
-                  </v-flex>
-                  <v-flex sm4 offset-sm1>
-                    <v-text-field label="Value"></v-text-field>
-                  </v-flex>
-                  <v-flex sm1>
-                    <v-btn>Remove</v-btn>
-                  </v-flex>
-                </v-layout>
+                <v-data-table :items="parameters" :headers="paramHeader">
+                  <template slot="items" slot-scope="props">
+                    <td>
+                      <v-edit-dialog :return-value.sync="props.item.name" lazy>
+                        {{props.item.name}}
+                        <v-text-field slot="input" v-model="props.item.name"></v-text-field>
+                      </v-edit-dialog>
+                    </td>
+
+                    <td>
+                      <v-edit-dialog :return-value.sync="props.item.value" lazy>
+                        {{props.item.value}}
+                        <v-text-field slot="input" v-model="props.item.value"></v-text-field>
+                      </v-edit-dialog>
+                    </td>
+
+                    <td class="justify-center layout px-0">
+                      <v-btn icon class="mx-0" @click="deleteItem(props.item)">
+                        <v-icon color="pink">delete</v-icon>
+                      </v-btn>
+                    </td>
+                  </template>
+                </v-data-table>
                 <v-layout>
                   <v-flex sm1>
-                    <v-btn>Add Row
+                    <v-btn @click="addParamter">Add Row
                     </v-btn>
                   </v-flex>
                 </v-layout>
@@ -70,24 +82,45 @@
         method: '',
         URL: '',
         threshold: '',
+        parameters: [{
+          name: '',
+          value: ''
+        }],
+        paramHeader: [
+          {text: 'Name', value: 'name'},
+          {text: 'Value', value: 'name'}
+        ],
         error: ''
       }
     },
-    methods: {
-      submit() {
-        this.$http.post('/api/httpEndpoints', {
-          Name: this.name,
-          Method: this.method.text,
-          URL: this.URL,
-          Threshold: parseInt(this.threshold)
-        }).then(response => {
-          this.$router.push({path: '/dashboard/http'})
-        }, response => {
-          let j = response.json()
-          this.error = j.error
-        })
+    methods:
+      {
+        submit() {
+          this.$http.post('/api/httpEndpoints', {
+            Name: this.name,
+            Method: this.method.text,
+            URL: this.URL,
+            Threshold: parseInt(this.threshold),
+            Parameters: this.parameters
+          }).then(response => {
+            this.$router.push({path: '/dashboard/http'})
+          }, response => {
+            return response.json()
+          }).then(json => {
+            this.error = json.error
+
+          })
+        }
+        ,
+        addParamter() {
+          this.parameters.push({name: '', value: ''})
+        },
+        deleteItem(item){
+          const index = this.parameters.indexOf(item)
+          this.parameters.splice(index, 1)
+
+        }
       }
-    }
   }
 </script>
 
