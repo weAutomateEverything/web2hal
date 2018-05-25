@@ -77,7 +77,7 @@
       submit() {
         this.$http.post('/api/httpEndpoints', {
           Name: this.name,
-          Method: this.method,
+          Method: this.method.text,
           URL: this.URL,
           Threshold: parseInt(this.threshold)
         }).then(response => {
