@@ -2,7 +2,6 @@
   <div>
     <v-navigation-drawer
       v-model="drawer"
-      fixed
       app
     >
       <v-list dense>
@@ -22,14 +21,22 @@
             <v-list-tile-title>Callout Group</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="chef">
-          <v-list-tile-action>
-            <v-icon>copyright</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
+        <v-list-group value="true">
+          <v-list-tile slot="activator">
+            <v-list-tile-action>
+              <v-icon>copyright</v-icon>
+            </v-list-tile-action>
             <v-list-tile-title>Chef</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-tile>
+
+              <v-list-tile @click="chefRecipe">
+                <v-list-tile>Recipes</v-list-tile>
+              </v-list-tile>
+              <v-list-tile @click="">
+                <v-list-tile>Environments</v-list-tile>
+              </v-list-tile>
+
+        </v-list-group>
         <v-list-tile @click="remote">
           <v-list-tile-action>
             <v-icon>settings_remote</v-icon>
@@ -84,8 +91,8 @@ export default {
     callout(){
       this.$router.push({path: '/dashboard/firstcall'})
     },
-    chef(){
-
+    chefRecipe(){
+      this.$router.push({path: '/dashboard/chef/recipe'})
     },
     remote(){
 

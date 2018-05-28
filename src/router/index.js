@@ -7,6 +7,7 @@ import dashhome from '@/components/dashhome'
 import httpsmoke from '@/components/httpsmoke'
 import addhttpsmoke from '@/components/addhttpsmoke'
 import calloutGroup from '@/components/calloutGroup'
+import chefRecipeList from '@/components/chefRecipeList'
 
 Vue.use(Router)
 
@@ -42,6 +43,10 @@ export default new Router({
         {
           path: 'firstcall',
           component: calloutGroup
+        },
+        {
+          path: 'chef/recipe',
+          component: chefRecipeList
         }
 
       ]

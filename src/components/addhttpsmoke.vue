@@ -8,7 +8,7 @@
           <v-spacer></v-spacer>
         </v-toolbar>
         <v-card-text>
-          <v-alert value="error" type="error">
+          <v-alert :value="error" type="error">
             {{ this.error }}
           </v-alert>
           <v-form>
@@ -90,7 +90,7 @@
           {text: 'Name', value: 'name'},
           {text: 'Value', value: 'name'}
         ],
-        error: ''
+        error: null
       }
     },
     methods:
