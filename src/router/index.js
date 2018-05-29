@@ -7,7 +7,8 @@ import dashhome from '@/components/dashhome'
 import httpsmoke from '@/components/httpsmoke'
 import addhttpsmoke from '@/components/addhttpsmoke'
 import calloutGroup from '@/components/calloutGroup'
-import chefRecipeList from '@/components/chefRecipeList'
+import chefRecipeList from '@/components/chef/chefRecipeList'
+import chefEnvironment from '@/components/chef/chefEnvironment'
 
 Vue.use(Router)
 
@@ -47,6 +48,10 @@ export default new Router({
         {
           path: 'chef/recipe',
           component: chefRecipeList
+        },
+        {
+          path: 'chef/environment',
+          component: chefEnvironment
         }
 
       ]

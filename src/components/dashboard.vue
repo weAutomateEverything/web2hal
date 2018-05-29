@@ -32,7 +32,7 @@
               <v-list-tile @click="chefRecipe">
                 <v-list-tile>Recipes</v-list-tile>
               </v-list-tile>
-              <v-list-tile @click="">
+              <v-list-tile @click="chefEnvironment">
                 <v-list-tile>Environments</v-list-tile>
               </v-list-tile>
 
@@ -93,6 +93,9 @@ export default {
     },
     chefRecipe(){
       this.$router.push({path: '/dashboard/chef/recipe'})
+    },
+    chefEnvironment(){
+      this.$router.push({path: '/dashboard/chef/environment'})
     },
     remote(){
 
