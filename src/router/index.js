@@ -6,7 +6,7 @@ import dashboard from '@/components/dashboard'
 import dashhome from '@/components/dashhome'
 import httpsmoke from '@/components/httpsmoke'
 import addhttpsmoke from '@/components/addhttpsmoke'
-import calloutGroup from '@/components/calloutGroup'
+import callout from '@/components/callout/callout'
 import chefRecipeList from '@/components/chef/chefRecipeList'
 import chefEnvironment from '@/components/chef/chefEnvironment'
 
@@ -43,7 +43,7 @@ export default new Router({
         },
         {
           path: 'firstcall',
-          component: calloutGroup
+          component: callout
         },
         {
           path: 'chef/recipe',
