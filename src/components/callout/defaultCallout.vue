@@ -14,7 +14,7 @@
             {{ success }}
           </v-alert>
           <v-form>
-            <v-text-field label="Phone Number" v-model="phone" required mask="## ### ####" :prefix="'+27 (0)'"
+            <v-text-field label="Phone Number" v-model="phone"
                           hint="Default Phone Number"></v-text-field>
           </v-form>
         </v-card-text>
